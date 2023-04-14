@@ -1,9 +1,10 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
 import dotenv from 'dotenv';
 import { DataSource } from 'typeorm';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { Task } from './src/tasks/tasks.entity';
+import { tasksRouter } from './src/tasks/tasks.router';
 
 // Initialize Express APP
 const app: Express = express();
@@ -26,11 +27,6 @@ export const AppDataSource = new DataSource({
 });
 
 const port = process.env.PORT || 5000;
-
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!!!!');
-});
-
 AppDataSource.initialize()
   .then(() => {
     app.listen(port);
@@ -39,3 +35,5 @@ AppDataSource.initialize()
   .catch((err) => {
     console.log(`DB Connection Error: ${err}`);
   });
+
+app.use('/', tasksRouter);
