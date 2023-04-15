@@ -36,4 +36,4 @@ AppDataSource.initialize()
     console.log(`DB Connection Error: ${err}`);
   });
 
-app.use('/', tasksRouter);
+app.use('/tasks', tasksRouter);
