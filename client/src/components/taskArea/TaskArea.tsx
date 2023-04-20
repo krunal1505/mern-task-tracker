@@ -86,7 +86,7 @@ export const TaskArea: FC = (): ReactElement => {
         <Grid item display="flex" flexDirection="column" xs={10} md={8}>
           <>
             {error && <Alert severity="error">Error fetching tasks</Alert>}
-            {!error && Array.isArray(data) && data.length > 0 && (
+            {!error && Array.isArray(data) && data.length === 0 && (
               <Alert severity="warning">You dont have any tasks yet</Alert>
             )}
             {isLoading ? (
